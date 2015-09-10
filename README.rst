@@ -59,3 +59,10 @@ Features
 --------
 
 * OAuth2 authentication with username and password
+
+TODO
+----
+
+* Write methods to modify data in SugarCRM
+* Add more auxiliary methods/properties
+* Build documentation
