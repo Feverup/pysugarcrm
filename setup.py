@@ -19,12 +19,12 @@ requirements = [
 ]
 
 test_requirements = [
-    # TODO: put package test requirements here
+    "responses>=0.4.0",
 ]
 
 setup(
     name='pysugarcrm',
-    version='0.1.0',
+    version='0.1.1',
     description="API Wrapper for SugarCRM v10",
     long_description=readme + '\n\n' + history,
     author="Diego Navarro",

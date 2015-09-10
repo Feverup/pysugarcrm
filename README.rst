@@ -24,7 +24,7 @@ Quickstart
 
 .. code-block :: python
 
-    from pysugarcrm.pysugarcrm import SugarCRM
+    from pysugarcrm import SugarCRM
     api = SugarCRM('https://yourdomain.sugaropencloud.eu', 'youruser', 'yourpassword')
 
     # Return info about current user
