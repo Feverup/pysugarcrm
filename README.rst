@@ -2,8 +2,8 @@
 PySugarCRM
 ===============================
 
-.. image:: https://img.shields.io/travis/dnmellen/pysugarcrm.svg
-        :target: https://travis-ci.org/dnmellen/pysugarcrm
+.. image:: https://img.shields.io/travis/Feverup/pysugarcrm.svg
+        :target: https://travis-ci.org/Feverup/pysugarcrm
 
 .. image:: https://img.shields.io/pypi/v/pysugarcrm.svg
         :target: https://pypi.python.org/pypi/pysugarcrm
