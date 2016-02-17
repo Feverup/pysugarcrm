@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 import urllib
-import urlparse
+try:
+    import urlparse
+except ImportError:
+    from urllib import parse as urlparse
 import requests
 import json
 
