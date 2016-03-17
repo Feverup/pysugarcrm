@@ -13,3 +13,9 @@ History
 
 * More direct import `from pysugarcrm import SugarCRM`
 * Added some tests
+
+0.1.2(2016-03-17)
+---------------------
+
+* Added POST and PUT methods
+* Improved error handling

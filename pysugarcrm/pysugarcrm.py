@@ -8,6 +8,12 @@ import requests
 import json
 
 
+class APIException(Exception):
+    """
+    Custom exception to handle request errors
+    """
+
+
 class SugarCRM(object):
     """
     Sugar CRM API for v10
@@ -71,7 +77,11 @@ class SugarCRM(object):
             query,
             fragment
         ))
-        return self.session.request(method, url, *args, **kwargs)
+        try:
+            request = self.session.request(method, url, *args, **kwargs)
+            return request.json()
+        except ValueError:
+            raise APIException('status code: {}, {}'.format(request.status_code, request.reason))
 
     @property
     def me(self):
@@ -79,7 +89,7 @@ class SugarCRM(object):
         Returns current user
         """
 
-        return self._api_request("GET", "/me").json()
+        return self._api_request("GET", "/me")
 
     def get(self, path, query_params=None):
         """
@@ -88,4 +98,24 @@ class SugarCRM(object):
 
         return self._api_request(
             "GET", path, query=urllib.urlencode(query_params or {})
-        ).json()
+        )
+
+    def post(self, path, query_params=None, *args, **kwargs):
+        """
+        Generic POST API call
+        """
+
+        return self._api_request(
+            "POST", path, query=urllib.urlencode(query_params or {}),
+            *args, **kwargs
+        )
+
+    def put(self, path, query_params=None, *args, **kwargs):
+        """
+        Generic PUT API call
+        """
+
+        return self._api_request(
+            "PUT", path, query=urllib.urlencode(query_params or {}),
+            *args, **kwargs
+        )
