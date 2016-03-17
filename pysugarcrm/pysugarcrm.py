@@ -89,3 +89,23 @@ class SugarCRM(object):
         return self._api_request(
             "GET", path, query=urllib.urlencode(query_params or {})
         ).json()
+
+    def post(self, path, query_params=None, *args, **kwargs):
+        """
+        Generic POST API call
+        """
+
+        return self._api_request(
+            "POST", path, query=urllib.urlencode(query_params or {}),
+            *args, **kwargs
+        ).json()
+
+    def put(self, path, query_params=None, *args, **kwargs):
+        """
+        Generic PUT API call
+        """
+
+        return self._api_request(
+            "PUT", path, query=urllib.urlencode(query_params or {}),
+            *args, **kwargs
+        ).json()
