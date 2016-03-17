@@ -7,6 +7,7 @@ except ImportError:
 import requests
 import json
 
+
 class APIException(Exception):
     """
     Custom exception to handle request errors

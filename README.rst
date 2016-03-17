@@ -55,6 +55,9 @@ Quickstart
        u'id': u'a0e117c0-9e46-aebf-f71a-55ed9a2b4731',
        u'user_name': u'alice'}]}
 
+    # Generate a Lead
+    api.post('/Leads', json={'first_name': 'John', 'last_name': 'Smith', 'business_name_c': 'Test John', 'contact_email_c': 'john@smith.com'})
+
 Features
 --------
 
