@@ -22,7 +22,8 @@ class SugarCRM(object):
     def __init__(
         self, url, username, password, client_id="sugar",
         login_path="/rest/v10/oauth2/token",
-        base_path="/rest/v10/"
+        base_path="/rest/v10/",
+        platform="api"
     ):
         """
         Updates secret token to start making requests
@@ -42,7 +43,7 @@ class SugarCRM(object):
             "username": username,
             "password": password,
             "client_id": client_id,
-            "platform": "api",
+            "platform": platform,
         }
 
         response = requests.post(login_url, data=json.dumps(data)).json()

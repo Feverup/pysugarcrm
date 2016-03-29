@@ -19,3 +19,8 @@ History
 
 * Added POST and PUT methods
 * Improved error handling
+
+0.1.3(2016-03-29)
+---------------------
+
+* Added platform parameter to constructor
