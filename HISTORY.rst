@@ -29,3 +29,8 @@ History
 ---------------------
 
 * Added close method and context manager for easier usage
+
+1.0.0(2016-03-30)
+---------------------
+
+* Python 3 tests passing
