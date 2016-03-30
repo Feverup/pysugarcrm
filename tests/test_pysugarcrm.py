@@ -12,7 +12,7 @@ import json
 import unittest
 import responses
 
-from pysugarcrm import SugarCRM
+from pysugarcrm import SugarCRM, sugar_api
 
 
 class TestPysugarcrm(unittest.TestCase):
@@ -32,3 +32,34 @@ class TestPysugarcrm(unittest.TestCase):
 
         api = SugarCRM('http://testserver.com/', "admin", "12345")
         self.assertEqual(api.secret_token, test_access_token)
+
+    @responses.activate
+    def test_context_manager(self):
+        test_access_token = "dsf3898sdjsdfj388jdsj8"
+        responses.add(
+            responses.POST,
+            'http://testserver.com/rest/v10/oauth2/token',
+            body=json.dumps({'access_token': test_access_token}),
+            status=200
+        )
+
+        responses.add(
+            responses.POST,
+            'http://testserver.com/rest/v10/oauth2/logout',
+            body=json.dumps({'success': True}),
+            status=200
+        )
+
+        responses.add(
+            responses.GET,
+            'http://testserver.com/rest/v10/me',
+            body=json.dumps({'success': True}),
+            status=200
+        )
+
+        with sugar_api('http://testserver.com/', "admin", "12345") as api:
+            self.assertEqual(api.secret_token, test_access_token)
+            self.assertEqual(api.me['success'], True)
+            self.assertEqual(api.is_closed, False)
+
+        self.assertEqual(api.is_closed, True)

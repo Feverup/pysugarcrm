@@ -6,6 +6,9 @@ except ImportError:
     from urllib import parse as urlparse
 import requests
 import json
+from contextlib import contextmanager
+
+__all__ = ['APIException', 'SugarCRM', 'sugar_api']
 
 
 class APIException(Exception):
@@ -63,6 +66,8 @@ class SugarCRM(object):
             }
         )
 
+        self.is_closed = False
+
     def _api_request(
         self, method, path, params='', query='', fragment='', *args, **kwargs
     ):
@@ -92,6 +97,19 @@ class SugarCRM(object):
 
         return self._api_request("GET", "/me")
 
+    def close(self):
+        """
+        Logs out the current user
+        """
+
+        response = self._api_request("POST", "/oauth2/logout")
+        try:
+            if response['success']:
+                self.is_closed = True
+                return self.is_closed
+        except KeyError:
+            raise APIException('There was a problem during logout')
+
     def get(self, path, query_params=None):
         """
         Generic GET API call
@@ -120,3 +138,12 @@ class SugarCRM(object):
             "PUT", path, query=urllib.urlencode(query_params or {}),
             *args, **kwargs
         )
+
+
+@contextmanager
+def sugar_api(*args, **kwargs):
+    try:
+        conn = SugarCRM(*args, **kwargs)
+        yield conn
+    finally:
+        conn.close()

@@ -24,3 +24,8 @@ History
 ---------------------
 
 * Added platform parameter to constructor
+
+0.1.4(2016-03-30)
+---------------------
+
+* Added close method and context manager for easier usage

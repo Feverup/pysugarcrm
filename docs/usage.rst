@@ -4,4 +4,8 @@ Usage
 
 To use PySugarCRM in a project::
 
-    import pysugarcrm
+    from pysugarcrm import sugar_api
+
+    or
+
+	from pysugarcrm import SugarCRM
