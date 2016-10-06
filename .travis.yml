@@ -8,14 +8,13 @@ python:
   - "2.7"
   - "2.6"
   - "pypy"
-  - "docs"
 
 # command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
 install:
-    - if [[ $TRAVIS_PYTHON_VERSION != 'docs' ]]; then pip install -r requirements.txt; fi
-    - if [[ $TRAVIS_PYTHON_VERSION == 'docs' ]]; then pip install sphinx; fi
+    - pip install -r requirements.txt
+    - if [[ $TRAVIS_PYTHON_VERSION == '2.7' ]]; then pip install sphinx; fi
 
 # command to run tests, e.g. python setup.py test
 script:
-    - if [[ $TRAVIS_PYTHON_VERSION != 'docs' ]]; then python setup.py test; fi
+    - python setup.py test
     - if [[ $TRAVIS_PYTHON_VERSION == 'docs' ]]; then  sphinx-build -b html docs _build/; fi
