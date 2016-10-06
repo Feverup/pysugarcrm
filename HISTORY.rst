@@ -34,3 +34,8 @@ History
 ---------------------
 
 * Python 3 tests passing
+
+1.0.1(2016-10-06)
+---------------------
+
+*Auto build docs in travis
