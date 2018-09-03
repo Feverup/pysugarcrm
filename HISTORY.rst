@@ -34,3 +34,8 @@ History
 ---------------------
 
 * Python 3 tests passing
+
+1.0.1(2018-03-09)
+---------------------
+
+* Python 3 import fixes

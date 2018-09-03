@@ -24,7 +24,7 @@ test_requirements = [
 
 setup(
     name='pysugarcrm',
-    version='1.0.0',
+    version='1.0.1',
     description="API Wrapper for SugarCRM v10",
     long_description=readme + '\n\n' + history,
     author="Diego Navarro",
@@ -50,6 +50,7 @@ setup(
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
     ],
     test_suite='tests',
     tests_require=test_requirements

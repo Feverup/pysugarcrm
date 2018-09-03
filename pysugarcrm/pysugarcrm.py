@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-import urllib
-try:
-    import urlparse
-except ImportError:
-    from urllib import parse as urlparse
-import requests
-import json
+from future.standard_library import install_aliases
+install_aliases()
+
+from urllib.parse import urlencode, urlparse, urlunparse
+
 from contextlib import contextmanager
+import json
+import requests
 
 __all__ = ['APIException', 'SugarCRM', 'sugar_api']
 
@@ -32,10 +32,10 @@ class SugarCRM(object):
         Updates secret token to start making requests
         """
 
-        parsed_url = list(urlparse.urlparse(url))
+        parsed_url = list(urlparse(url))
         self.scheme, self.netloc = parsed_url[:2]
         parsed_url[2] = login_path
-        login_url = urlparse.urlunparse(parsed_url)
+        login_url = urlunparse(parsed_url)
         self.base_path = base_path
         if not self.base_path.endswith('/'):
             self.base_path += '/'
@@ -75,7 +75,7 @@ class SugarCRM(object):
         Low level API request to SugarCRM
         """
 
-        url = urlparse.urlunparse((
+        url = urlunparse((
             self.scheme,
             self.netloc,
             self.base_path + path.lstrip('/'),
@@ -116,7 +116,7 @@ class SugarCRM(object):
         """
 
         return self._api_request(
-            "GET", path, query=urllib.urlencode(query_params or {})
+            "GET", path, query=urlencode(query_params or {})
         )
 
     def post(self, path, query_params=None, *args, **kwargs):
@@ -125,7 +125,7 @@ class SugarCRM(object):
         """
 
         return self._api_request(
-            "POST", path, query=urllib.urlencode(query_params or {}),
+            "POST", path, query=urlencode(query_params or {}),
             *args, **kwargs
         )
 
@@ -135,7 +135,7 @@ class SugarCRM(object):
         """
 
         return self._api_request(
-            "PUT", path, query=urllib.urlencode(query_params or {}),
+            "PUT", path, query=urlencode(query_params or {}),
             *args, **kwargs
         )
 
