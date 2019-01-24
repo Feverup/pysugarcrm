@@ -11,3 +11,4 @@ Contributors
 ------------
 
 * Pablo Camino <pablo.camino@feverup.com>
+* Marcos Hernández <marcos.hernandez@feverup.com>
