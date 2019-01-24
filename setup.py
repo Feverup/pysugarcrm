@@ -24,12 +24,12 @@ test_requirements = [
 
 setup(
     name='pysugarcrm',
-    version='1.0.1',
+    version='1.0.2',
     description="API Wrapper for SugarCRM v10",
     long_description=readme + '\n\n' + history,
     author="Diego Navarro",
     author_email='diego@feverup.com',
-    url='https://github.com/dnmellen/pysugarcrm',
+    url='https://github.com/Feverup/pysugarcrm',
     packages=[
         'pysugarcrm',
     ],

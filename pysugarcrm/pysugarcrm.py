@@ -1,12 +1,16 @@
 # -*- coding: utf-8 -*-
-from future.standard_library import install_aliases
-install_aliases()
-
-from urllib.parse import urlencode, urlparse, urlunparse
-
 from contextlib import contextmanager
 import json
 import requests
+
+try:
+    # Python3 imports
+    from urllib.parse import urlencode, urlparse, urlunparse
+except ImportError:
+    # Python2 imports
+    from urllib import urlencode
+    from urlparse import urlparse, urlunparse
+
 
 __all__ = ['APIException', 'SugarCRM', 'sugar_api']
 

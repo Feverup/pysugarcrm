@@ -39,3 +39,8 @@ History
 ---------------------
 
 * Python 3 import fixes
+
+1.0.2(2019-01-24)
+---------------------
+
+* Remove future library dependency
