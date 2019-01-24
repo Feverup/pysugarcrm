@@ -16,10 +16,6 @@ from pysugarcrm import SugarCRM, sugar_api
 
 
 class TestPysugarcrm(unittest.TestCase):
-
-    def setUp(self):
-        pass
-
     @responses.activate
     def test_login(self):
         test_access_token = "dsf3898sdjsdfj388jdsj8"
