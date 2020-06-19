@@ -53,7 +53,9 @@ class SugarCRM(object):
             "platform": platform,
         }
 
-        response = requests.post(login_url, data=json.dumps(data)).json()
+        # Start requests session
+        self.session = requests.Session()
+        response = self.session.post(login_url, data=json.dumps(data)).json()
 
         # Retrieve auth token
         try:
@@ -61,8 +63,6 @@ class SugarCRM(object):
         except KeyError:
             raise ValueError('No access token received')
 
-        # Start requests session
-        self.session = requests.Session()
         self.session.headers.update(
             {
                 "Content-Type": "application/json",
