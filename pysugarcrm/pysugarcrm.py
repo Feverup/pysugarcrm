@@ -23,13 +23,13 @@ class APIException(Exception):
 
 class SugarCRM(object):
     """
-    Sugar CRM API for v10
+    Sugar CRM API for v11
     """
 
     def __init__(
         self, url, username, password, client_id="sugar",
-        login_path="/rest/v10/oauth2/token",
-        base_path="/rest/v10/",
+        login_path="/rest/v11/oauth2/token",
+        base_path="/rest/v11/",
         platform="api"
     ):
         """
@@ -146,6 +146,7 @@ class SugarCRM(object):
 
 @contextmanager
 def sugar_api(*args, **kwargs):
+    global conn
     try:
         conn = SugarCRM(*args, **kwargs)
         yield conn
