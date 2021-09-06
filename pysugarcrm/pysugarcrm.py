@@ -35,7 +35,7 @@ class SugarCRM(object):
         """
         Updates secret token to start making requests
         """
-
+        raise APIException()
         parsed_url = list(urlparse(url))
         self.scheme, self.netloc = parsed_url[:2]
         parsed_url[2] = login_path
@@ -146,8 +146,10 @@ class SugarCRM(object):
 
 @contextmanager
 def sugar_api(*args, **kwargs):
+    conn = None
     try:
         conn = SugarCRM(*args, **kwargs)
         yield conn
     finally:
-        conn.close()
+        if conn is not None and conn.is_closed is False:
+            conn.close()
