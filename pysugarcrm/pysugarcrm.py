@@ -35,6 +35,7 @@ class SugarCRM(object):
         """
         Updates secret token to start making requests
         """
+
         parsed_url = list(urlparse(url))
         self.scheme, self.netloc = parsed_url[:2]
         parsed_url[2] = login_path

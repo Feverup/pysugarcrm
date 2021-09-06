@@ -44,3 +44,8 @@ History
 ---------------------
 
 * Remove future library dependency
+
+1.0.3(2021-09-06)
+---------------------
+
+* Fixed misleading error when Sugar connexion is not performed successfully
