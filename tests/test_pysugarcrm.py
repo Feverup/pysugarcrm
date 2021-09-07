@@ -69,4 +69,5 @@ class TestPysugarcrm(unittest.TestCase):
             status=200
         )
 
-        self.assertRaises(ValueError, func=sugar_api('http://testserver.com/', "admin", "12345"))
+        with self.assertRaises(ValueError):
+            sugar_api('http://testserver.com/', "admin", "12345")
