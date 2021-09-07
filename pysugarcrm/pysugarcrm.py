@@ -146,8 +146,10 @@ class SugarCRM(object):
 
 @contextmanager
 def sugar_api(*args, **kwargs):
+    conn = None
     try:
         conn = SugarCRM(*args, **kwargs)
         yield conn
     finally:
-        conn.close()
+        if conn is not None and conn.is_closed is False:
+            conn.close()
