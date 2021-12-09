@@ -1,12 +1,22 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+import os
+import re
 
 try:
     from setuptools import setup
 except ImportError:
     from distutils.core import setup
 
+
+base_dir = os.path.dirname(os.path.abspath(__file__))
+
+def get_version(filename="pysugarcrm/__init__.py"):
+    with open(os.path.join(base_dir, filename), encoding="utf-8") as initfile:
+        for line in initfile.readlines():
+            m = re.match("__version__ *= *['\"](.*)['\"]", line)
+            if m:
+                return m.group(1)
 
 with open('README.rst') as readme_file:
     readme = readme_file.read()
@@ -24,7 +34,7 @@ test_requirements = [
 
 setup(
     name='pysugarcrm',
-    version='1.0.3',
+    version=get_version(),
     description="API Wrapper for SugarCRM v10",
     long_description=readme + '\n\n' + history,
     author="Diego Navarro",
