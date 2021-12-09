@@ -53,7 +53,9 @@ class SugarCRM(object):
             "platform": platform,
         }
 
-        response = requests.post(login_url, data=json.dumps(data)).json()
+        # Start requests session
+        self.session = requests.Session()
+        response = self.session.post(login_url, data=json.dumps(data)).json()
 
         # Retrieve auth token
         try:
@@ -61,8 +63,6 @@ class SugarCRM(object):
         except KeyError:
             raise ValueError('No access token received')
 
-        # Start requests session
-        self.session = requests.Session()
         self.session.headers.update(
             {
                 "Content-Type": "application/json",
@@ -146,8 +146,10 @@ class SugarCRM(object):
 
 @contextmanager
 def sugar_api(*args, **kwargs):
+    conn = None
     try:
         conn = SugarCRM(*args, **kwargs)
         yield conn
     finally:
-        conn.close()
+        if conn is not None and conn.is_closed is False:
+            conn.close()
